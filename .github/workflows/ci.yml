@@ -1,0 +1,35 @@
+name: Portfolio CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  check-portfolio:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Check HTML file
+        run: |
+          test -f index.html
+          echo "HTML file exists"
+
+      - name: Check CSS file
+        run: |
+          test -f style.css
+          echo "CSS file exists"
+
+      - name: Check JavaScript file
+        run: |
+          test -f script.js
+          echo "JavaScript file exists"
+
+      - name: CI completed
+        run: echo "Portfolio CI checks passed!"
